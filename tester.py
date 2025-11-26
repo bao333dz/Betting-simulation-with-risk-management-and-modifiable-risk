@@ -65,7 +65,10 @@ for _ in range(1000):
         win += 1
 
 # Average plays per iteration
-print(count)
 avg = count / 1000
+print("")
 print(f"After 1000 iterations, you reached the desired balance {win} times and busted {lose} times.")
+scrate = (win / 1000) * 100
+print(f"Your success rate is {scrate:.2f}%.")
 print(f"{avg:.0f} is the average number of plays per iteration.")
+print("Thank you for trying this simulator out!")
