@@ -5,6 +5,8 @@ import random
 win = 0
 lose = 0
 i = 0
+avg = 0
+count = 0
 
 for _ in range(1000): # Run the simulation 1000 times
     balance = 1000 # Initial balance
@@ -15,8 +17,8 @@ for _ in range(1000): # Run the simulation 1000 times
     while balance > 1 and balance < 2000: # Play until account busts or doubles
         pick = random.choice([1,2]) # The winrate can be modified here by changing the ratio of 1s to 2s in this list
 
-        if pick == 1: # Win
-            balance = balance + ((balance * 0.1)*3) # The risk and reward ratio is adjusted here the standard is 1.9
+        if pick == 1 or pick == 2: # Win
+            balance = balance + ((balance * 0.1)*1.9) # The risk and reward ratio is adjusted here the standard is 1.9
             o += 1
             print (f"Play {o} of iteration {i}: Win, Current balance: {balance:.2f}")
         
@@ -24,12 +26,13 @@ for _ in range(1000): # Run the simulation 1000 times
             balance = balance - (balance * 0.1)
             o += 1
             print (f"Play {o} of iteration {i}: Lose, Current balance: {balance:.2f}")
-
+        count = (count + o) # Total plays across all iterations
     if balance <= 1: # Account busted
         lose += 1
 
     else: # Doubled account
         win += 1
-
+avg = count / i # Average plays per iteration
 print("")
 print(f"After 1000 iterations, you doubled the account {win} times and busted {lose} times.")
+print(f"{avg:.0f} is the average number of plays per iteration.")
